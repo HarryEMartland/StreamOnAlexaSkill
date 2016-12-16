@@ -12,7 +12,6 @@ export namespace SimpleResponseTranslator {
     }
 
     export function translateImage(content: string, smallImage: string, largeImage: string): CustomSkillResponse {
-        console.log(smallImage)
         return new CustomSkillResponse({}, new CustomSkillResponseResponse(
             new CustomSkillResponseOutputSpeech("PlainText", content, null),
             new CustomSkillResponseCard("Standard", "Stream On", content, null,
