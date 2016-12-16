@@ -29,6 +29,7 @@ describe("StreamStatusService", function () {
             assert.equal(Status.ONLINE, streamerStatus.status);
             assert.equal("StarCraft II: Heart of the Swarm", streamerStatus.game);
             assert.equal("test status", streamerStatus.title);
+            assert.equal("http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-{width}x{height}.jpg", streamerStatus.imageTemplate);
             done();
         });
     });
