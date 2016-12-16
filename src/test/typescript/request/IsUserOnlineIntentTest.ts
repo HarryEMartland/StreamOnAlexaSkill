@@ -26,7 +26,7 @@ describe("IsUserOnline", function () {
 
     it("Should make request to stream status service for streamer and return online message when online", function (done) {
         mockStreamerStatusResponse(Status.ONLINE);
-        assertMessageResponse(done,"Yes. looserfruit is online playing Overwatch Killing noobs.");
+        assertMessageResponse(done,"Yes. looserfruit is online, playing Overwatch, Killing noobs.");
     });
 
     it("Should make request to stream status service for streamer and return offline message when offline", function (done) {

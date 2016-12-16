@@ -17,7 +17,7 @@ export namespace IsUserOnlineIntent{
 
             let message:string;
             if(streamerStatus.status == Status.ONLINE){
-                message = `Yes. ${streamerStatus.streamer.name} is online playing ${streamerStatus.game} ${streamerStatus.title}.`;
+                message = `Yes. ${streamerStatus.streamer.name} is online playing ${streamerStatus.game}, ${streamerStatus.title}.`;
             }else {
                 message = `No. ${streamerStatus.streamer.name} is not online.`
             }
