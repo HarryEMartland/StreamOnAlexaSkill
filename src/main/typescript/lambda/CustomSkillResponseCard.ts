@@ -1,14 +1,16 @@
-export class CustomSkillResponseCard{
+export class CustomSkillResponseCard {
     private _type: string;
     private _title: string;
     private _content: string;
     private _text: string;
+    private _image: CardImage;
 
-    constructor(type: string, title: string, content: string, text: string) {
+    constructor(type: string, title: string, content: string, text: string, image: CardImage) {
         this._type = type;
         this._title = title;
         this._content = content;
         this._text = text;
+        this._image = image;
     }
 
     get type(): string {
@@ -27,12 +29,43 @@ export class CustomSkillResponseCard{
         return this._text;
     }
 
-    public toJSON(){
+    get image(): CardImage {
+        return this._image;
+    }
+
+    public toJSON() {
         return {
-            type:this.type,
+            type: this.type,
             title: this.title,
             content: this.content,
-            text: this.text
+            text: this.text,
+            image:this.image
+        }
+    }
+}
+
+export class CardImage {
+    private _smallImageUrl;
+    private _largeImageUrl;
+
+    constructor(smallImageUrl, largeImageUrl) {
+        this._smallImageUrl = smallImageUrl;
+        this._largeImageUrl = largeImageUrl;
+    }
+
+
+    get smallImageUrl() {
+        return this._smallImageUrl;
+    }
+
+    get largeImageUrl() {
+        return this._largeImageUrl;
+    }
+
+    public toJSON() {
+        return {
+            smallImageUrl: this._smallImageUrl,
+            largeImageUrl: this._largeImageUrl
         }
     }
 }

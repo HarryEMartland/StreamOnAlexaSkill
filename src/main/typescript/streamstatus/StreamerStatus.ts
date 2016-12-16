@@ -3,14 +3,16 @@ export class StreamerStatus {
 
     private _streamer: Streamer;
     private _status: Status;
-    private _game;
-    private _title;
+    private _game: string;
+    private _title: string;
+    private _imageTemplate: string;
 
-    constructor(streamer: Streamer, status: Status, game: string, title: string) {
+    constructor(streamer: Streamer, status: Status, game: string, title: string, imageTemplate: string) {
         this._streamer = streamer;
         this._status = status;
         this._game = game;
         this._title = title;
+        this._imageTemplate = imageTemplate;
     }
 
     get streamer(): Streamer {
@@ -27,6 +29,10 @@ export class StreamerStatus {
 
     get game() {
         return this._game;
+    }
+
+    get imageTemplate(): string {
+        return this._imageTemplate;
     }
 }
 

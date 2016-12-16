@@ -6,6 +6,7 @@ import {StreamStatusService} from "../../../main/typescript/streamstatus/StreamS
 import {Streamer} from "../../../main/typescript/streamstatus/Streamer";
 import {CustomSkillResponse} from "../../../main/typescript/lambda/CustomSkillResponse";
 import {UsernameReplacementService} from "../../../main/typescript/UsernameReplacementService";
+import {CardImage} from "../../../main/typescript/lambda/CustomSkillResponseCard";
 describe("IsUserOnline", function () {
 
     let request = {
@@ -25,28 +26,42 @@ describe("IsUserOnline", function () {
     } as Request;
 
     it("Should make request to stream status service for streamer and return online message when online", function (done) {
-        mockStreamerStatusResponse(Status.ONLINE);
-        assertMessageResponse(done,"Yes. looserfruit is online, playing Overwatch, Killing noobs.");
+        let imageTemplate = "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-{width}x{height}.jpg";
+        let smallImage = "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-720x480.jpg";
+        let largeImage = "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-1200x800.jpg";
+        mockStreamerStatusResponse(Status.ONLINE, imageTemplate);
+        assertMessageResponseWithImage(done, "Yes. looserfruit is online playing Overwatch, Killing noobs.",
+            smallImage, largeImage);
     });
 
     it("Should make request to stream status service for streamer and return offline message when offline", function (done) {
-        mockStreamerStatusResponse(Status.OFFLINE);
-        assertMessageResponse(done,"No. looserfruit is not online.");
+        mockStreamerStatusResponse(Status.OFFLINE,null);
+        assertMessageResponse(done, "No. looserfruit is not online.");
     });
 
-    function mockStreamerStatusResponse(status:Status){
+    function mockStreamerStatusResponse(status: Status, image:string) {
         sinon.spy(UsernameReplacementService, "replace").calledOnce;
 
-        sinon.stub(StreamStatusService, "getStreamStatus", function (streamer: Streamer):Promise<StreamerStatus> {
+        sinon.stub(StreamStatusService, "getStreamStatus", function (streamer: Streamer): Promise<StreamerStatus> {
             assert.equal("looserfruit", streamer.name);
-            return Promise.resolve(new StreamerStatus(streamer, status, "Overwatch", "Killing noobs"));
+            return Promise.resolve(new StreamerStatus(streamer, status, "Overwatch", "Killing noobs", image));
         });
     }
 
-    function assertMessageResponse(done:()=>void, message:string){
+    function assertMessageResponse(done: () => void, message: string) {
         IsUserOnlineIntent.doIntent(request).then(function (response: CustomSkillResponse) {
             assert.equal(message, response.response.outputSpeech.text);
             assert.equal(message, response.response.card.content);
+            done();
+        }).catch(done)
+    }
+
+    function assertMessageResponseWithImage(done: () => void, message: string, smallImage: string, largeImage: string) {
+        IsUserOnlineIntent.doIntent(request).then(function (response: CustomSkillResponse) {
+            assert.equal(message, response.response.outputSpeech.text);
+            assert.equal(message, response.response.card.content);
+            assert.equal(smallImage, response.response.card.image.smallImageUrl);
+            assert.equal(largeImage, response.response.card.image.largeImageUrl);
             done();
         }).catch(done)
     }
