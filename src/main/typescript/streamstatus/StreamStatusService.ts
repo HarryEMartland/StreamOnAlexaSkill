@@ -11,8 +11,15 @@ export module StreamStatusService{
 
                 let jsonResponse = JSON.parse(response);
                 let onlineStatus = jsonResponse.stream===null?Status.OFFLINE:Status.ONLINE;
+                let game = "";
+                let title = "";
 
-                return Promise.resolve(new StreamerStatus(streamer, onlineStatus))
+                if(onlineStatus === Status.ONLINE){
+                    game = jsonResponse.stream.game;
+                    title = jsonResponse.stream.channel.status;
+                }
+
+                return Promise.resolve(new StreamerStatus(streamer, onlineStatus, game, title))
             });
 
     }

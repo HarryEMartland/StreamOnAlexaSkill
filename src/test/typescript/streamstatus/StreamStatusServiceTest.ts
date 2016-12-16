@@ -26,7 +26,9 @@ describe("StreamStatusService", function () {
 
         StreamStatusService.getStreamStatus(streamer).then(function (streamerStatus: StreamerStatus) {
             assert.equal(streamer, streamerStatus.streamer);
-            assert.equal(Status.ONLINE, streamerStatus.status)
+            assert.equal(Status.ONLINE, streamerStatus.status);
+            assert.equal("StarCraft II: Heart of the Swarm", streamerStatus.game);
+            assert.equal("test status", streamerStatus.title);
             done();
         });
     });

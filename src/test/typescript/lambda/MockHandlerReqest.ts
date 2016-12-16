@@ -23,7 +23,7 @@ let event = {
             "slots": {
                 "USER": {
                     "name": "USER",
-                    "value": "looserfruit"
+                    "value": "yogscast"
                 }
             }
         }
