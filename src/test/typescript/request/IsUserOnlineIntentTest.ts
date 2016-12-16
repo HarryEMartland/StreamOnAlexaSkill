@@ -1,10 +1,11 @@
-import {IsUserOnlineIntent} from "../../../../main/typescript/service/request/IsUserOnlineIntent";
+import {IsUserOnlineIntent} from "../../../main/typescript/request/IsUserOnlineIntent";
 import * as sinon from "sinon";
 import * as assert from "assert";
-import {StreamerStatus, Status} from "../../../../main/typescript/service/streamstatus/StreamerStatus";
-import {StreamStatusService} from "../../../../main/typescript/service/streamstatus/StreamStatusService";
-import {Streamer} from "../../../../main/typescript/service/streamstatus/Streamer";
-import {CustomSkillResponse} from "../../../../main/typescript/service/lambda/CustomSkillResponse";
+import {StreamerStatus, Status} from "../../../main/typescript/streamstatus/StreamerStatus";
+import {StreamStatusService} from "../../../main/typescript/streamstatus/StreamStatusService";
+import {Streamer} from "../../../main/typescript/streamstatus/Streamer";
+import {CustomSkillResponse} from "../../../main/typescript/lambda/CustomSkillResponse";
+import {UsernameReplacementService} from "../../../main/typescript/UsernameReplacementService";
 describe("IsUserOnline", function () {
 
     let request = {
@@ -34,6 +35,8 @@ describe("IsUserOnline", function () {
     });
 
     function mockStreamerStatusResponse(status:Status){
+        sinon.spy(UsernameReplacementService, "replace").calledOnce;
+
         sinon.stub(StreamStatusService, "getStreamStatus", function (streamer: Streamer):Promise<StreamerStatus> {
             assert.equal("looserfruit", streamer.name);
             return Promise.resolve(new StreamerStatus(streamer, status));
@@ -50,6 +53,7 @@ describe("IsUserOnline", function () {
 
     afterEach(function () {
         sinon.restore(StreamStatusService);
+        sinon.restore(UsernameReplacementService);
     })
 
 

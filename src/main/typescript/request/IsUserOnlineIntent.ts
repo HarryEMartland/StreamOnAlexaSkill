@@ -5,10 +5,15 @@ import {Streamer} from "../streamstatus/Streamer";
 import {CustomSkillResponse} from "../lambda/CustomSkillResponse";
 import {SimpleResponseTranslator} from "../lambda/SimpleResponseTranslator";
 import {StreamerStatus, Status} from "../streamstatus/StreamerStatus";
+import {UsernameReplacementService} from "../UsernameReplacementService";
 export namespace IsUserOnlineIntent{
 
     export function doIntent(request:Request):Promise<CustomSkillResponse>{
-        return StreamStatusService.getStreamStatus(new Streamer(request.intent.slots.USER.value)).then(function (streamerStatus:StreamerStatus) {
+
+        let username = UsernameReplacementService.replace(request.intent.slots.USER.value);
+        let streamer = new Streamer(username);
+
+        return StreamStatusService.getStreamStatus(streamer).then(function (streamerStatus:StreamerStatus) {
 
             let message:string;
             if(streamerStatus.status == Status.ONLINE){

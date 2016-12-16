@@ -1,9 +1,9 @@
 import * as assert from "assert";
-import {SimpleResponseTranslator} from "../../../../main/typescript/service/lambda/SimpleResponseTranslator";
-import {CustomSkillResponse} from "../../../../main/typescript/service/lambda/CustomSkillResponse";
-import {CustomSkillResponseResponse} from "../../../../main/typescript/service/lambda/CustomSkillResponseResponse";
-import {CustomSkillResponseOutputSpeech} from "../../../../main/typescript/service/lambda/CustomSkillResponseOutputSpeech";
-import {CustomSkillResponseCard} from "../../../../main/typescript/service/lambda/CustomSkillResponseCard";
+import {SimpleResponseTranslator} from "../../../main/typescript/lambda/SimpleResponseTranslator";
+import {CustomSkillResponse} from "../../../main/typescript/lambda/CustomSkillResponse";
+import {CustomSkillResponseResponse} from "../../../main/typescript/lambda/CustomSkillResponseResponse";
+import {CustomSkillResponseOutputSpeech} from "../../../main/typescript/lambda/CustomSkillResponseOutputSpeech";
+import {CustomSkillResponseCard} from "../../../main/typescript/lambda/CustomSkillResponseCard";
 describe("SimpleResponseTranslatorTest", function () {
 
 

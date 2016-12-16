@@ -1,8 +1,8 @@
 import * as assert from "assert";
-import {StreamStatusService} from "../../../../main/typescript/service/streamstatus/StreamStatusService";
-import {Streamer} from "../../../../main/typescript/service/streamstatus/Streamer";
-import {StreamerStatus, Status} from "../../../../main/typescript/service/streamstatus/StreamerStatus";
-import {HttpClient} from "../../../../main/typescript/httpClient/HttpClient";
+import {StreamStatusService} from "../../../main/typescript/streamstatus/StreamStatusService";
+import {Streamer} from "../../../main/typescript/streamstatus/Streamer";
+import {StreamerStatus, Status} from "../../../main/typescript/streamstatus/StreamerStatus";
+import {HttpClient} from "../../../main/typescript/HttpClient";
 import * as sinon from "sinon";
 
 describe("StreamStatusService", function () {
@@ -39,6 +39,6 @@ describe("StreamStatusService", function () {
 
 function givenTwitchResponse(file:string){
     sinon.stub(HttpClient, "get", function (url: string) {
-        return Promise.resolve(JSON.stringify(require("../../../resources/twichStreamResponse/"+file)))
+        return Promise.resolve(JSON.stringify(require("../../resources/twichStreamResponse/"+file)))
     })
 }

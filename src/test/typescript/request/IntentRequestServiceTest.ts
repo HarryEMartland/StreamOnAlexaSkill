@@ -1,8 +1,8 @@
 
 import * as sinon from "sinon";
 import * as assert from "assert";
-import {IsUserOnlineIntent} from "../../../../main/typescript/service/request/IsUserOnlineIntent";
-import {IntentRequestService} from "../../../../main/typescript/service/request/IntentRequestService";
+import {IsUserOnlineIntent} from "../../../main/typescript/request/IsUserOnlineIntent";
+import {IntentRequestService} from "../../../main/typescript/request/IntentRequestService";
 describe("IntentRequestService", function () {
 
     it("Should call service for IsUserOnline intent", function (done) {

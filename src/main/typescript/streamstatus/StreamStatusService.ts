@@ -1,12 +1,12 @@
 import {Streamer} from "./Streamer";
 import {StreamerStatus, Status} from "./StreamerStatus";
-import {HttpClient} from "../../httpClient/HttpClient";
+import {HttpClient} from "../HttpClient";
 
 export module StreamStatusService{
 
     export function getStreamStatus(streamer:Streamer):Promise<StreamerStatus>{
         
-        return HttpClient.get('api.twitch.tv/kraken/streams/'+streamer.name+'?client_id='+process.env.twitch_client_id)
+        return HttpClient.get('https://api.twitch.tv/kraken/streams/'+streamer.name+'?client_id='+process.env.twitch_client_id)
             .then(function (response: string) {
 
                 let jsonResponse = JSON.parse(response);

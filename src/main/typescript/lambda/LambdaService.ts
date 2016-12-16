@@ -1,21 +1,22 @@
-
 import {Context, Callback} from "aws-lambda";
 import {IntentRequestService} from "../request/IntentRequestService";
 import {CustomSkillResponse} from "./CustomSkillResponse";
-export module LambdaService{
 
-    export function handle(event: Event, context: Context, callback: Callback){
+export function handle(event: Event, context: Context, callback: Callback):Promise<CustomSkillResponse> {
 
-        let responsePromise:Promise<CustomSkillResponse>;
+    let responsePromise: Promise<CustomSkillResponse>;
 
-        if(event.request.type === "IntentRequest"){
-            responsePromise = IntentRequestService.doRequest(event.request);
-        }
-
-        responsePromise.then(function (response: CustomSkillResponse) {
-            callback.apply(null,response)
-        })
-
+    if (event.request.type === "IntentRequest") {
+        responsePromise = IntentRequestService.doRequest(event.request);
     }
 
+    return responsePromise.then(function (response: CustomSkillResponse) {
+        callback(null, response);
+        return Promise.resolve(response);
+    }).catch(function (error) {
+        callback(error);
+        return Promise.reject(error);
+    })
+
 }
+

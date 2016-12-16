@@ -1,7 +1,6 @@
 
 export module HttpClient {
     export function get(url):Promise<string> {
-        console.log("Starting http request: ", url);
         // return new pending promise
         return new Promise((resolve, reject) => {
             // select http or https module, depending on reqested url
@@ -21,5 +20,5 @@ export module HttpClient {
             // handle connection errors of the request
             request.on('error', (err) => reject(err))
         })
-    };
+    }
 }
