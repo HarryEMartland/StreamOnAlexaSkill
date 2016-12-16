@@ -1,0 +1,20 @@
+language: node_js
+node_js:
+  - "node"
+before_script:
+  - "npm install -g typescript"
+  - "npm run build"
+deploy:
+  provider: lambda
+  function_name: "ManchesterTramsAlexaSkill-$TRAVIS_BRANCH"
+  role: "arn:aws:iam::818032293643:role/service-role/node"
+  module_name: "ManMetHandler"
+  handler_name: "handler"
+  zip: "app.zip"
+  region: "eu-west-1"
+  runtime: "nodejs4.3"
+  access_key_id: $AWS_ACCESS_KEY_ID
+  secret_access_key: $AWS_SECRET_ACCESS_KEY
+  on:
+    all_branches: true
+    tags: false
