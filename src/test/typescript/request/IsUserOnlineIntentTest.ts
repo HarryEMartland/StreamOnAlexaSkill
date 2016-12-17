@@ -30,8 +30,7 @@ describe("IsUserOnline", function () {
         let smallImage = "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-720x480.jpg";
         let largeImage = "http://static-cdn.jtvnw.net/previews-ttv/live_user_test_channel-1200x800.jpg";
         mockStreamerStatusResponse(Status.ONLINE, imageTemplate);
-        assertMessageResponseWithImage(done, "Yes. looserfruit is online playing Overwatch, Killing noobs.",
-            smallImage, largeImage);
+        assertMessageResponse(done, "Yes. looserfruit is online playing Overwatch, Killing noobs.");
     });
 
     it("Should make request to stream status service for streamer and return offline message when offline", function (done) {

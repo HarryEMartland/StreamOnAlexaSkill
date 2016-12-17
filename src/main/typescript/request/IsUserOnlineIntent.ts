@@ -31,10 +31,10 @@ export namespace IsUserOnlineIntent {
     }
 
     function onlineResponse(streamerStatus: StreamerStatus) {
-        return Promise.resolve(SimpleResponseTranslator.translateImage(
-            `Yes. ${streamerStatus.streamer.name} is online playing ${streamerStatus.game}, ${streamerStatus.title}.`,
-            replateImageTemplate(streamerStatus.imageTemplate, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT),
-            replateImageTemplate(streamerStatus.imageTemplate, LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT)
+        return Promise.resolve(SimpleResponseTranslator.translate(
+            `Yes. ${streamerStatus.streamer.name} is online playing ${streamerStatus.game}, ${streamerStatus.title}.`
+            //replateImageTemplate(streamerStatus.imageTemplate, SMALL_IMAGE_WIDTH, SMALL_IMAGE_HEIGHT),
+            //replateImageTemplate(streamerStatus.imageTemplate, LARGE_IMAGE_WIDTH, LARGE_IMAGE_HEIGHT)
         ))
     }
 
