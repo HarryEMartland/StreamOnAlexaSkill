@@ -1,12 +1,13 @@
 import {CustomSkillResponseOutputSpeech} from "./CustomSkillResponseOutputSpeech";
 import {CustomSkillResponseCard} from "./CustomSkillResponseCard";
+import {CustomSkillResponseReprompt} from "./CustomSkillResponseReprompt";
 export class CustomSkillResponseResponse{
 
     private _outputSpeech: CustomSkillResponseOutputSpeech;
-    private _reprompt : CustomSkillResponseOutputSpeech;
+    private _reprompt : CustomSkillResponseReprompt;
     private _card: CustomSkillResponseCard;
 
-    constructor(outputSpeach: CustomSkillResponseOutputSpeech, reprompt:CustomSkillResponseOutputSpeech, cart: CustomSkillResponseCard) {
+    constructor(outputSpeach: CustomSkillResponseOutputSpeech, reprompt:CustomSkillResponseReprompt, cart: CustomSkillResponseCard) {
         this._outputSpeech = outputSpeach;
         this._reprompt = reprompt;
         this._card = cart;
@@ -16,7 +17,7 @@ export class CustomSkillResponseResponse{
         return this._outputSpeech;
     }
 
-    get reprompt(): CustomSkillResponseOutputSpeech {
+    get reprompt(): CustomSkillResponseReprompt {
         return this._reprompt;
     }
 
