@@ -17,7 +17,7 @@ export class CustomSkillResponseResponse{
     }
 
     get reprompt(): CustomSkillResponseOutputSpeech {
-        return this.reprompt;
+        return this._reprompt;
     }
 
     get card(): CustomSkillResponseCard {
