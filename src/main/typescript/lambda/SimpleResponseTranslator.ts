@@ -16,7 +16,7 @@ export namespace SimpleResponseTranslator {
         return new CustomSkillResponse({}, new CustomSkillResponseResponse(
             null,
             new CustomSkillResponseOutputSpeech("PlainText", content, null),
-            new CustomSkillResponseCard("Simple", "Stream On", content, null, null)
+            null
         ));
     }
 
