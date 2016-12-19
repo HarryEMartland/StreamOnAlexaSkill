@@ -9,15 +9,17 @@ export namespace SimpleResponseTranslator {
         return new CustomSkillResponse({}, new CustomSkillResponseResponse(
             new CustomSkillResponseOutputSpeech("PlainText", content, null),
             null,
-            new CustomSkillResponseCard("Simple", "Stream On", content, null, null)
+            new CustomSkillResponseCard("Simple", "Stream On", content, null, null),
+            true
         ));
     }
 
     export function translateReprompt(content: string): CustomSkillResponse {
         return new CustomSkillResponse({}, new CustomSkillResponseResponse(
-            null,
+            new CustomSkillResponseOutputSpeech("PlainText", content, null),
             new CustomSkillResponseReprompt(new CustomSkillResponseOutputSpeech("PlainText", content, null)),
-            null
+            null,
+            false
         ));
     }
 
@@ -27,7 +29,8 @@ export namespace SimpleResponseTranslator {
             null,
             new CustomSkillResponseCard("Standard", "Stream On", content, null,
                 new CardImage(smallImage, largeImage)
-            )
+            ),
+            true
         ));
     }
 
