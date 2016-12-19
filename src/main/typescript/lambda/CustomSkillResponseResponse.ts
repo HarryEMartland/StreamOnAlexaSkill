@@ -3,15 +3,21 @@ import {CustomSkillResponseCard} from "./CustomSkillResponseCard";
 export class CustomSkillResponseResponse{
 
     private _outputSpeech: CustomSkillResponseOutputSpeech;
+    private _reprompt : CustomSkillResponseOutputSpeech;
     private _card: CustomSkillResponseCard;
 
-    constructor(outputSpeach: CustomSkillResponseOutputSpeech, cart: CustomSkillResponseCard) {
+    constructor(outputSpeach: CustomSkillResponseOutputSpeech, reprompt:CustomSkillResponseOutputSpeech, cart: CustomSkillResponseCard) {
         this._outputSpeech = outputSpeach;
+        this._reprompt = reprompt;
         this._card = cart;
     }
 
     get outputSpeech(): CustomSkillResponseOutputSpeech {
         return this._outputSpeech;
+    }
+
+    get reprompt(): CustomSkillResponseOutputSpeech {
+        return this.reprompt;
     }
 
     get card(): CustomSkillResponseCard {
@@ -21,6 +27,7 @@ export class CustomSkillResponseResponse{
     public toJSON(){
         return {
             outputSpeech: this.outputSpeech,
+            reprompt: this.reprompt,
             card: this._card
         }
     }

@@ -11,6 +11,7 @@ describe("SimpleResponseTranslatorTest", function () {
 
         let expected = new CustomSkillResponse({}, new CustomSkillResponseResponse(
             new CustomSkillResponseOutputSpeech("PlainText", "simple test", null),
+            null,
             new CustomSkillResponseCard("Simple", "Stream On", "simple test", null, null)));
 
         let actual = SimpleResponseTranslator.translate( "simple test");

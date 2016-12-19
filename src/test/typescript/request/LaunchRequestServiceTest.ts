@@ -12,7 +12,7 @@ describe("LaunchRequestService", function () {
 
         process.env.LAUNCH_REQUEST_RESPONSE = "test text";
 
-        sinon.stub(SimpleResponseTranslator, "translate", function (text: string): Promise<CustomSkillResponse> {
+        sinon.stub(SimpleResponseTranslator, "translateReprompt", function (text: string): Promise<CustomSkillResponse> {
             assert.equal("test text", text);
             return Promise.resolve(mockResponse);
         });
